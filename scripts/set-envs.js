@@ -1,26 +1,29 @@
-
-const {writeFileSync, mkdirSync } = require('fs')
-
-require('dotenv').config();
-
+const fs = require('fs');
+const path = require('path');
+require('dotenv').config(); // Cargar las variables de entorno
 
 
+// Ruta al archivo environment.ts
+const targetPath = path.join(__dirname, '../src/environments/environment.ts');
 
-const targetPath = "./src/environments/environment.ts";
-
-const envFileContent = `
+// Contenido del archivo environment.ts
+const envConfigFile = `
 export const environment = {
-  mapbox_key: "${process.env["MAPBOX_KEY"]}",
-  otra: "PROPIEDAD",
+  production: false,
+  mapboxKey: '${process.env.MAPBOX_KEY}'
 };
 `;
 
-mkdirSync("./src/environments", { recursive: true });
+// Crear el directorio si no existe
+const dir = path.dirname(targetPath);
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir, { recursive: true });
+}
 
-writeFileSync(targetPath, envFileContent);
-
-
-
-
-
-
+// Escribir el archivo environment.ts
+try {
+  fs.writeFileSync(targetPath, envConfigFile);
+  console.log(`Archivo ${targetPath} creado correctamente.`);
+} catch (err) {
+  console.error(`Error al crear el archivo ${targetPath}:`, err);
+}

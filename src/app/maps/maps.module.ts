@@ -9,6 +9,9 @@ import { FullScreenPageComponent } from './pages/full-screen-page/full-screen-pa
 import { MarkersPageComponent } from './pages/markers-page/markers-page.component';
 import { PropertiesPageComponent } from './pages/properties-page/properties-page.component';
 import { ZoomRangePageComponent } from './pages/zoom-range-page/zoom-range-page.component';
+import mapboxgl from 'mapbox-gl'; 
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGlhZ29tZXpwYSIsImEiOiJjbTIweG53bjYwMWJrMm1weDc5bXl1MWdyIn0.Gws3y9J2cF3iaTz1UNxPUQ';
 
 
 @NgModule({
